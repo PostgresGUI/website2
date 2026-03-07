@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const screenshots = {
-  intro: "/screenshots/0 - 1440x900 PostgresGUI - Intro.jpg",
-  connections: "/screenshots/3 - 1440x900 PostgresGUI - Create db connections.jpg",
-  folders: "/screenshots/2 - 1440x900 PostgresGUI - Organize saved queries into folders.jpg",
-  editRow: "/screenshots/8 - 1440x900 PostgresGUI - Edit row.jpg",
-  export: "/screenshots/7 - 1440x900 PostgresGUI - View query results as JSON and export to CSV.jpg",
+  intro: "/screenshots/intro.jpg",
+  connections: "/screenshots/connections.jpg",
+  folders: "/screenshots/folders.jpg",
+  editRow: "/screenshots/edit-row.jpg",
+  export: "/screenshots/export.jpg",
 };
 
 const valueProps = [
@@ -56,7 +56,7 @@ const valueProps = [
 const features = [
   {
     desc: "Work across multiple queries at once. Each tab keeps its own connection, results, and scroll position — so you can reference one query while writing another without losing your place.",
-    screenshot: "/screenshots/1 - 1440x900 PotsgresGUI - Create Tabs.jpg",
+    screenshot: "/screenshots/tabs.jpg",
   },
   {
     desc: "Add your local dev database, a staging server, and production — all in one place. Connections are saved securely and ready to go whenever you open the app.",
