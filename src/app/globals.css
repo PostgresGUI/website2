@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAFAFA;
+  --foreground: #111111;
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --muted: #6B7280;
+  --surface: #F0F0F0;
+  --border: #E5E5E5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-geist), system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist), system-ui, sans-serif;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Hero screenshot floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.hero-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient orb */
+@keyframes orb-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.gradient-orb {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(37, 99, 235, 0.08), transparent 70%);
+  filter: blur(60px);
+  animation: orb-pulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* macOS window screenshot frame */
+.macos-window {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Feature sections: macOS Liquid Glass ── */
+
+.features-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Glass feature card */
+.feature-glass {
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-glass:hover {
+  transform: translateY(-4px);
+}
+
+/* Screenshot inside glass card */
+.feature-glass .macos-window {
+  border-radius: 10px;
+  box-shadow:
+    0 8px 32px -8px rgba(0, 0, 0, 0.12),
+    0 0 0 0.5px rgba(0, 0, 0, 0.06);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-glass:hover .macos-window {
+  transform: scale(1.015);
+}
+
+/* Staggered reveal for feature children */
+.feature-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-reveal .feature-text {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.feature-reveal .feature-image {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.feature-reveal.reverse .feature-text {
+  transform: translateX(20px);
+}
+
+.feature-reveal.reverse .feature-image {
+  transform: translateX(-20px);
+}
+
+.feature-reveal.visible .feature-text,
+.feature-reveal.visible .feature-image {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
