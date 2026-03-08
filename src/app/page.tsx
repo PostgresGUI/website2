@@ -53,26 +53,59 @@ const valueProps = [
   },
 ];
 
+const featurePatterns = [
+  // Tabs: Concentric rounded rectangles
+  {
+    bg: `url("data:image/svg+xml,%3Csvg width='44' height='44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='4' width='36' height='28' rx='5' stroke='%232563EB' stroke-opacity='0.14' stroke-width='1' fill='none'/%3E%3Crect x='9' y='9' width='30' height='22' rx='4' stroke='%232563EB' stroke-opacity='0.10' stroke-width='1' fill='none'/%3E%3Crect x='14' y='14' width='24' height='16' rx='3' stroke='%232563EB' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
+    size: "44px 44px",
+  },
+  // Connections: Node graph
+  {
+    bg: `url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='6' cy='6' r='3' stroke='%232563EB' stroke-opacity='0.14' stroke-width='1' fill='none'/%3E%3Ccircle cx='34' cy='6' r='3' stroke='%232563EB' stroke-opacity='0.10' stroke-width='1' fill='none'/%3E%3Ccircle cx='20' cy='34' r='3' stroke='%232563EB' stroke-opacity='0.14' stroke-width='1' fill='none'/%3E%3Cline x1='9' y1='7' x2='31' y2='7' stroke='%232563EB' stroke-opacity='0.08' stroke-width='1'/%3E%3Cline x1='8' y1='9' x2='18' y2='31' stroke='%232563EB' stroke-opacity='0.08' stroke-width='1'/%3E%3Cline x1='32' y1='9' x2='22' y2='31' stroke='%232563EB' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E")`,
+    size: "40px 40px",
+  },
+  // Saved Queries: Topographic contour ellipses
+  {
+    bg: `url("data:image/svg+xml,%3Csvg width='48' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='24' cy='16' rx='22' ry='13' stroke='%232563EB' stroke-opacity='0.12' stroke-width='1' fill='none'/%3E%3Cellipse cx='24' cy='16' rx='14' ry='8' stroke='%232563EB' stroke-opacity='0.09' stroke-width='1' fill='none'/%3E%3Cellipse cx='24' cy='16' rx='6' ry='3' stroke='%232563EB' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
+    size: "48px 32px",
+  },
+  // Edit Row: Dot grid with displaced dot
+  {
+    bg: `url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='1.5' fill='%232563EB' fill-opacity='0.10'/%3E%3Ccircle cx='16' cy='4' r='1.5' fill='%232563EB' fill-opacity='0.10'/%3E%3Ccircle cx='4' cy='16' r='1.5' fill='%232563EB' fill-opacity='0.10'/%3E%3Ccircle cx='18' cy='14' r='2.5' fill='%232563EB' fill-opacity='0.20'/%3E%3C/svg%3E")`,
+    size: "24px 24px",
+  },
+  // Export: Diagonal parallel lines
+  {
+    bg: `url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform='rotate(-45 6 6)'%3E%3Cline x1='0' y1='3' x2='12' y2='3' stroke='%232563EB' stroke-opacity='0.12' stroke-width='1'/%3E%3Cline x1='0' y1='9' x2='12' y2='9' stroke='%232563EB' stroke-opacity='0.07' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E")`,
+    size: "12px 12px",
+  },
+];
+
 const features = [
   {
     desc: "Work across multiple queries at once. Each tab keeps its own connection, results, and scroll position — so you can reference one query while writing another without losing your place.",
     screenshot: "/screenshots/tabs.jpg",
+    pattern: featurePatterns[0],
   },
   {
     desc: "Add your local dev database, a staging server, and production — all in one place. Connections are saved securely and ready to go whenever you open the app.",
     screenshot: screenshots.connections,
+    pattern: featurePatterns[1],
   },
   {
     desc: "Keep your queries tidy. Save the ones you use often, group them into folders by project or topic, and find what you need instantly instead of digging through your notes.",
     screenshot: screenshots.folders,
+    pattern: featurePatterns[2],
   },
   {
     desc: "Click into any row to view and edit its values directly. No need to write UPDATE statements for quick fixes — just change the field and save.",
     screenshot: screenshots.editRow,
+    pattern: featurePatterns[3],
   },
   {
     desc: "Preview your results as a table or raw JSON, then export to CSV with one click. Filter tables by schema to cut through the noise in large databases.",
     screenshot: screenshots.export,
+    pattern: featurePatterns[4],
   },
 ];
 
@@ -84,7 +117,7 @@ const comparisons = [
 ];
 
 export default function Home() {
-  const [stars, setStars] = useState<number | null>(null);
+  const [stars, setStars] = useState<number>(0);
 
   useEffect(() => {
     fetch("https://api.github.com/repos/postgresgui/postgresgui")
@@ -157,11 +190,9 @@ export default function Home() {
                 </svg>
                 Star on GitHub
               </span>
-              {stars !== null && (
-                <span className="inline-flex items-center gap-1 px-5 py-3.5 border-l border-border text-sm font-mono">
-                  ⭐ {stars.toLocaleString()}
-                </span>
-              )}
+              <span className="inline-flex items-center gap-1 px-5 py-3.5 border-l border-border text-sm font-mono">
+                ⭐ {stars.toLocaleString()}
+              </span>
             </a>
           </div>
         </div>
@@ -209,25 +240,35 @@ export default function Home() {
                 className={`feature-reveal${isReverse ? " reverse" : ""} feature-glass`}
               >
                 <div
-                  className={`flex flex-col gap-8 items-center ${
+                  className={`flex flex-col gap-8 items-center lg:items-stretch ${
                     isReverse ? "lg:flex-row-reverse" : "lg:flex-row"
                   }`}
                 >
-                  <div className="feature-text lg:w-[30%] flex flex-col justify-center text-center lg:text-left">
-                    <p className="text-xl leading-relaxed">
-                      {feature.desc}
-                    </p>
-                    <a
-                      href="https://apps.apple.com/us/app/postgresgui/id6756467181"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-gradient-to-b from-white to-[#f5f5f5] px-5 py-2 text-sm font-semibold text-foreground transition-all hover:bg-surface shadow-[0_2px_8px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] mt-5 self-center lg:self-start"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                      </svg>
-                      Download on the App Store
-                    </a>
+                  <div className="feature-text lg:w-[30%] flex flex-col justify-end text-center lg:text-left">
+                    <div
+                      className="feature-decoration hidden lg:flex flex-1 rounded-xl bg-[#f5f7fa] overflow-hidden mb-6"
+                      style={{
+                        backgroundImage: feature.pattern.bg,
+                        backgroundSize: feature.pattern.size,
+                        backgroundRepeat: "repeat",
+                      }}
+                    />
+                    <div>
+                      <p className="text-xl leading-relaxed">
+                        {feature.desc}
+                      </p>
+                      <a
+                        href="https://apps.apple.com/us/app/postgresgui/id6756467181"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-gradient-to-b from-white to-[#f5f5f5] px-5 py-2 text-sm font-semibold text-foreground transition-all hover:bg-surface shadow-[0_2px_8px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] mt-5 self-center lg:self-start"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                        </svg>
+                        Download on the App Store
+                      </a>
+                    </div>
                   </div>
                   <div className="feature-image lg:w-[70%]">
                     <div className="macos-window">
