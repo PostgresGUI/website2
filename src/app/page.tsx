@@ -62,26 +62,31 @@ const features = [
   {
     desc: "Work across multiple queries at once. Each tab keeps its own connection, results, and scroll position — so you can reference one query while writing another without losing your place.",
     screenshot: "/screenshots/tabs.jpg",
+    alt: "Multiple query tabs open side by side",
     pattern: featurePattern,
   },
   {
     desc: "Add your local dev database, a staging server, and production — all in one place. Connections are saved securely and ready to go whenever you open the app.",
     screenshot: screenshots.connections,
+    alt: "Database connections manager with multiple servers",
     pattern: featurePattern,
   },
   {
     desc: "Keep your queries tidy. Save the ones you use often, group them into folders by project or topic, and find what you need instantly instead of digging through your notes.",
     screenshot: screenshots.folders,
+    alt: "Saved queries organized in folders",
     pattern: featurePattern,
   },
   {
     desc: "Click into any row to view and edit its values directly. No need to write UPDATE statements for quick fixes — just change the field and save.",
     screenshot: screenshots.editRow,
+    alt: "Inline row editing with editable fields",
     pattern: featurePattern,
   },
   {
     desc: "Preview your results as a table or raw JSON, then export to CSV with one click. Filter tables by schema to cut through the noise in large databases.",
     screenshot: screenshots.export,
+    alt: "Query results with export to CSV option",
     pattern: featurePattern,
   },
 ];
@@ -251,7 +256,7 @@ export default function Home() {
                     <div className="macos-window">
                       <Image
                         src={feature.screenshot}
-                        alt={`Feature screenshot ${i + 1}`}
+                        alt={feature.alt}
                         width={1440}
                         height={900}
                         className="w-full h-auto"
