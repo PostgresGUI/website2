@@ -54,7 +54,7 @@ const valueProps = [
 ];
 
 const featurePattern = {
-  bg: `url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%2371717a' fill-opacity='0.5'/%3E%3C/svg%3E")`,
+  bg: `url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23a1a1aa' fill-opacity='0.3'/%3E%3C/svg%3E")`,
   size: "20px 20px",
 };
 
@@ -136,7 +136,7 @@ export default function Home() {
               height={88}
             />
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1] mb-4">
+          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.1] mb-4">
             A lightweight<br />PostgreSQL<br />client for Mac
           </h1>
           <p className="text-base sm:text-lg font-mono text-accent tracking-wider uppercase mb-10">
@@ -221,7 +221,7 @@ export default function Home() {
                     isReverse ? "lg:flex-row-reverse" : "lg:flex-row"
                   }`}
                 >
-                  <div className={`feature-text lg:w-[30%] flex flex-col justify-end text-center lg:text-left`}>
+                  <div className={`feature-text lg:w-[30%] flex flex-col justify-end text-center lg:text-left order-last lg:order-none`}>
                     <div
                       className="feature-decoration hidden lg:flex flex-1 w-full overflow-hidden"
                       style={{
@@ -294,7 +294,7 @@ export default function Home() {
       </section>
 
       {/* Divider */}
-      <div className="max-w-7xl mx-auto border-t border-border" />
+      <div className="border-t border-border" />
 
       {/* CTA */}
       <section className="px-6 py-32">
