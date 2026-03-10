@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Blog — PostgresGUI",
+  title: "Blog — Postgres Client for Mac",
   description:
     "Articles about PostgreSQL tools, workflows, and best practices for Mac developers.",
   alternates: {
