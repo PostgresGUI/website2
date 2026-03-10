@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "Mac",
     "database client",
     "SQL client",
-    "PostgreSQL GUI",
+    "PostgreSQL client",
     "native Mac app",
     "open source",
     "Swift",
