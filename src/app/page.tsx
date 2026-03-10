@@ -128,6 +128,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {/* Nav */}
+      <nav className="relative z-20 px-6 py-5">
+        <div className="max-w-7xl mx-auto flex justify-end">
+          <a
+            href="/blog"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted hover:text-foreground transition-colors"
+          >
+            Blog ↗
+          </a>
+        </div>
+      </nav>
+
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center px-6 pt-32 pb-24 overflow-hidden">
         <div className="gradient-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3" />
@@ -337,6 +351,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
           <p>Made for Postgres developers</p>
           <div className="flex items-center gap-6">
+            <a
+              href="/blog"
+              className="hover:text-foreground transition-colors"
+            >
+              Blog
+            </a>
             <a
               href="https://github.com/postgresgui/postgresgui"
               target="_blank"
