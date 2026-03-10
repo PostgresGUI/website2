@@ -16,6 +16,10 @@ const posts = [
     title: "The Best pgAdmin Alternatives for Mac",
   },
   {
+    slug: "best-postgresql-client-mac",
+    title: "Best PostgreSQL Client for Mac (2026)",
+  },
+  {
     slug: "ssh-tunnel-postgres",
     title: "SSH Tunneling to PostgreSQL: A Complete CLI Tutorial",
   },

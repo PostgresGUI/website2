@@ -23,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://postgresmac.com/blog/best-postgresql-client-mac",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: "https://postgresmac.com/blog/ssh-tunnel-postgres",
       lastModified: new Date(),
       changeFrequency: "monthly",
