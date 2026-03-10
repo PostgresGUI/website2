@@ -22,7 +22,7 @@ export default function BlogLayout({
             href="/"
             className="flex items-center gap-3 text-foreground hover:text-accent transition-colors"
           >
-            <Image src="/logo.png" alt="PostgresGUI" width={28} height={28} />
+            <Image src="/logo.png" alt="Postgres Client for Mac Elephant Logo" width={28} height={28} />
           </Link>
           <nav className="flex items-center gap-5">
             <Link

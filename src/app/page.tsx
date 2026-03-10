@@ -150,7 +150,7 @@ export default function Home() {
           <div className="mb-8 w-32 h-32 rounded-[22%] bg-gradient-to-b from-white to-[#e8e8e8] shadow-[0_6px_20px_rgba(0,0,0,0.1),0_0_0_0.5px_rgba(0,0,0,0.06)] flex items-center justify-center overflow-hidden">
             <Image
               src="/logo.png"
-              alt="PostgresGUI"
+              alt="Postgres Client for Mac Elephant Logo"
               width={88}
               height={88}
             />
