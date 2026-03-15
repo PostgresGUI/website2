@@ -12,6 +12,12 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "explain-analyze-postgres",
+    title:
+      "EXPLAIN / EXPLAIN ANALYZE — The Complete Guide to PostgreSQL Query Plans",
+    date: new Date("2026-03-15"),
+  },
+  {
     slug: "postico-vs-tableplus-vs-dbeaver-vs-datagrip",
     title:
       "Postico vs TablePlus vs DBeaver vs DataGrip: The Definitive 2026 Database Client Showdown",
