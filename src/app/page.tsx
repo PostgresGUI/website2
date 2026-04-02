@@ -143,7 +143,7 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="relative flex flex-col items-center justify-center px-6 pt-32 pb-24 overflow-hidden">
+      <section className="relative flex flex-col items-center justify-center px-6 pt-1 pb-24 overflow-hidden">
         <div className="gradient-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3" />
 
         <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto">
