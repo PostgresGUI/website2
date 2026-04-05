@@ -66,7 +66,7 @@ const features = [
     pattern: featurePattern,
   },
   {
-    desc: "Add your local dev database, a staging server, and production — all in one place. Connections are saved securely and ready to go whenever you open the app.",
+    desc: "Add your local dev database, a staging server over SSH, and production — all in one place. Connections are saved securely and ready to go whenever you open the app.",
     screenshot: screenshots.connections,
     alt: "Database connections manager with multiple servers",
     pattern: featurePattern,

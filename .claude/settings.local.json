@@ -4,7 +4,8 @@
       "Bash(git checkout src/app/page.tsx src/app/globals.css)",
       "Bash(git checkout HEAD -- src/app/page.tsx src/app/globals.css)",
       "Bash(curl -s https://api.github.com/repos/postgresgui/postgresgui | python3 -c \"import sys,json; print\\(json.load\\(sys.stdin\\).get\\('stargazers_count','?'\\)\\)\")",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "WebSearch"
     ]
   }
 }
