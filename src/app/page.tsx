@@ -30,7 +30,7 @@ const valueProps = [
       </svg>
     ),
     title: "Lightweight",
-    desc: "Only 27.4 MB. Starts instantly.",
+    desc: "Only 32.8 MB. Starts instantly.",
   },
   {
     icon: (
