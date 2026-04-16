@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { type CSSProperties, useEffect, useState } from "react";
 
 const screenshots = {
   intro: "/screenshots/intro.jpg",
@@ -13,6 +13,7 @@ const screenshots = {
 
 const valueProps = [
   {
+    glowPosition: "18% 14%",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -20,26 +21,28 @@ const valueProps = [
         <path d="M12 17v4" />
       </svg>
     ),
-    title: "Native macOS",
-    desc: "Built with Swift. No Electron. No JVM.",
+    title: "Native",
+    desc: "Written in Swift. No Electron.",
   },
   {
+    glowPosition: "82% 20%",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
     title: "Lightweight",
-    desc: "Only 32.8 MB. Starts instantly.",
+    desc: "32.8 MB. Starts instantly.",
   },
   {
+    glowPosition: "28% 78%",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        <path d="M12 3C7.03 3 3 7.03 3 12c0 3.98 2.58 7.35 6.16 8.54.45.08.62-.19.62-.43v-1.52c-2.5.54-3.03-1.06-3.03-1.06-.4-1.03-.98-1.31-.98-1.31-.8-.55.06-.54.06-.54.89.06 1.36.91 1.36.91.79 1.35 2.08.96 2.58.73.08-.57.31-.96.56-1.18-2-.23-4.11-1-4.11-4.46 0-.99.35-1.8.92-2.44-.09-.23-.4-1.16.09-2.42 0 0 .75-.24 2.47.93A8.52 8.52 0 0 1 12 7.32c.76 0 1.53.1 2.25.3 1.72-1.17 2.47-.93 2.47-.93.49 1.26.18 2.19.09 2.42.57.64.92 1.45.92 2.44 0 3.47-2.11 4.22-4.12 4.46.32.28.61.83.61 1.67v2.48c0 .24.16.52.63.43A9 9 0 0 0 21 12c0-4.97-4.03-9-9-9z" />
       </svg>
     ),
-    title: "Dark Mode",
-    desc: "Beautiful in light and dark.",
+    title: "Open Source",
+    desc: "Build it yourself. Have fun.",
   },
 ];
 
@@ -198,18 +201,29 @@ export default function Home() {
       </section>
 
       {/* Value Props */}
-      <section className="px-6 py-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="px-6 py-24">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
           {valueProps.map((prop, i) => (
             <div
               key={prop.title}
-              className={`reveal reveal-delay-${i + 1} flex flex-col items-center text-center gap-3`}
+              className={`reveal reveal-delay-${i + 1} value-card group relative overflow-hidden rounded-[30px] px-8 py-9 sm:px-10 sm:py-10`}
+              style={{ "--value-card-glow-position": prop.glowPosition } as CSSProperties}
             >
-              <div className="text-accent">{prop.icon}</div>
-              <h3 className="text-base font-semibold tracking-wide uppercase">
-                {prop.title}
-              </h3>
-              <p className="text-base text-muted">{prop.desc}</p>
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-90" />
+              <div className="relative z-10 flex h-full flex-col items-start text-left">
+                <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#eff6ff] via-white to-[#dbeafe] text-accent shadow-[0_16px_30px_rgba(37,99,235,0.16)] ring-1 ring-[#bfdbfe]">
+                  {prop.icon}
+                </div>
+                <h3 className="text-2xl font-semibold tracking-tight sm:text-[1.9rem]">
+                  {prop.title}
+                </h3>
+                <p className="mt-4 max-w-[22ch] text-lg leading-8 text-muted">
+                  {prop.desc}
+                </p>
+                <div className="mt-auto pt-8">
+                  <div className="h-1.5 w-20 rounded-full bg-gradient-to-r from-accent via-[#60a5fa] to-[#c4b5fd] opacity-80 transition-all duration-500 group-hover:w-28" />
+                </div>
+              </div>
             </div>
           ))}
         </div>
